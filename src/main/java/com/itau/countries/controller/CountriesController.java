@@ -20,7 +20,7 @@ public class CountriesController {
 
     @io.swagger.v3.oas.annotations.Operation(summary = "Get all countries", description = "Fetches a list of all countries")
     @ApiResponses(value = {
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Return a CEP address"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Return a list of all countries"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping("/all")

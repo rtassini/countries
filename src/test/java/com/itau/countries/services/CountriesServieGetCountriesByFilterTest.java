@@ -2,14 +2,13 @@ package com.itau.countries.services;
 
 import com.itau.countries.client.restcountries.Countries;
 import com.itau.countries.client.restcountries.Name;
-import com.itau.countries.client.restcountries.RestCountriesClient;
 import com.itau.countries.service.CountriesService;
 import com.itau.countries.service.strategy.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 
