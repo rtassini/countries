@@ -1,16 +1,10 @@
 package com.itau.countries.controller;
 
-
-
 import com.itau.countries.service.CountriesService;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -48,8 +42,8 @@ public class CountriesController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping("/filter/{filter}/value/{value}")
-    public ResponseEntity<?> getACountriesByFilter(@RequestParam(value = "filter", required = true) String filter,
-                                                 @RequestParam(value = "value", required = true) String value) {
+    public ResponseEntity<?> getCountriesByFilter(@PathVariable String filter,
+                                                  @PathVariable String value ) {
         log.info("Fetching countries by {}: {}", filter, value);
 
 
@@ -58,7 +52,7 @@ public class CountriesController {
             return ResponseEntity.badRequest().body("Invalid filter parameter. Allowed values are: name, capital, region, subregion.");
         }
         try {
-            return ResponseEntity.ok(countriesService.getCountries(filter, value));
+            return ResponseEntity.ok(countriesService.getCountriesByFilter(filter, value));
         } catch (Exception e) {
             log.error("Error fetching countries data", e);
             return ResponseEntity.status(500).body("Failed to fetch countries data");

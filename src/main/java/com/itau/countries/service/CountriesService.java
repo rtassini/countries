@@ -20,7 +20,7 @@ public class CountriesService {
     private final FilterByRegionStrategyImpl filterByRegionStrategy;
     private final FilterByCapitalStrategyImpl filterByCapitalStrategy;
     private final FilterBySubRegionStrategyImpl filterBySubRegionStrategy;
-    Map<String, FilterStrategy> filterStrategies = null;
+    public Map<String, FilterStrategy> filterStrategies = null;
 
     public CountriesService(RestCountriesClient restCountriesClient, FilterByNameStrategyImpl filterByNameStrategy,
                             FilterByRegionStrategyImpl filterByRegionStrategy, FilterByCapitalStrategyImpl filterByCapitalStrategy,
@@ -33,7 +33,7 @@ public class CountriesService {
     }
 
     @PostConstruct
-    public void inicializarMap(){
+    public void initializerMap(){
         log.info("Initializing filter strategies");
         filterStrategies = Map.of(
                 "name", filterByNameStrategy,
@@ -60,7 +60,7 @@ public class CountriesService {
 
 
 
-    public List<Countries> getCountries(String filter, String value) {
+    public List<Countries> getCountriesByFilter(String filter, String value) {
         log.info("Fetching countries data by {}: {}", filter, value);
         if (!filterStrategies.containsKey(filter)) {
             log.error("Invalid filter parameter: {}", filter);
